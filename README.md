@@ -1,3 +1,3 @@
 # ShutdownProgram
-Simple program to initialize computer shutdown
+Simple program which initialize computer shutdown
 My own mini gig
