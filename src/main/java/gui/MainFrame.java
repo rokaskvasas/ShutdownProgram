@@ -4,33 +4,42 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+@SuppressWarnings("FieldCanBeLocal")
 
 public class MainFrame extends JFrame {
+
+    private final JButton b1shut,b2shut,b3abort;
+    private final JLabel background,timeLabel;
+    private final JTextField seconds;
+
     public MainFrame(){
         this.setResizable(true);
-        this.setVisible(true);
-        this.setSize(400,200);
-        this.setLayout(new MigLayout(
-                "","[]20[]20","[]50"
-        ));
+        this.setSize(398,238);
+        this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        JLabel background = new JLabel(new ImageIcon(".\\src\\main\\java\\files\\Windows_XP_Shutdown.png"));
-        JLabel shutdown1hLabel = new JLabel("Shutdown in 1 hour");
-        JLabel shutdown2hLabel = new JLabel("Shutdown in 2 hour");
-        JLabel abortLabel = new JLabel("ABORT!!");
-        JButton shutdown1hButton = new JButton("Execute");
-        JButton shutdown2hButton = new JButton("Execute");
-        JButton abortButton = new JButton("ABORT!!");
-        //region adding to frame
-        this.add(shutdown1hLabel,"span 2");
-        this.add(shutdown2hLabel,"span 2");
-        this.add(abortLabel,"span 2 , wrap");
-        this.add(shutdown1hButton,"span 2");
-        this.add(shutdown2hButton,"span 2");
-        this.add(abortButton);
-        this.add(background);
-        background.setLayout(new FlowLayout());
-        //endregion
-    }
+        this.setVisible(true);
+        background = new JLabel(new ImageIcon(".\\src\\main\\java\\files\\Windows_XP_Shutdown.png"));
+        background.setLayout(new MigLayout(
+                "",
+                "40[]40[]40[]",
+                "80[]20[]"
+        ));
+        b1shut = new JButton("in 1 hour");
+        b2shut = new JButton("in 2 hour");
+        b3abort = new JButton("ABORT!!");
+        timeLabel = new JLabel("Enter seconds till shutoff");
+        seconds = new JTextField(10);
 
+        //region add to frame
+        this.add(background);
+        background.add(b1shut);
+        background.add(b2shut);
+        background.add(b3abort,"wrap");
+        background.add(timeLabel,"split 2, span 3");
+        background.add(seconds);
+        //endregion
+
+
+
+    }
 }
