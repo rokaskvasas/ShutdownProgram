@@ -6,4 +6,9 @@ public class Buttons {
     public static final String abort ="Abort";
     public static final String seconds = "Enter seconds:";
     public static final String entText = "till shutdown";
+    public static final String cmd3600 = "shutdown /s /t 3600";
+    public static final String cmd7200 = "shutdown /s /t 7200";
+    public static final String cmdAbort = "shutdown /a";
+    public static final String close = "Close";
+
 }
