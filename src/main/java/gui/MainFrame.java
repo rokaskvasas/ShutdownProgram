@@ -5,8 +5,13 @@ import models.Actions;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 
 @SuppressWarnings("FieldCanBeLocal")
 
@@ -42,7 +47,6 @@ public class MainFrame extends JFrame {
         b3abort.setBackground(new Color(255,80,0));
         b4execute.setBackground(Color.BLACK);
         b4execute.setForeground(Color.WHITE);
-
 
 
 
