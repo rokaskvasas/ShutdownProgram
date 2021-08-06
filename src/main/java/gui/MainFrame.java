@@ -6,19 +6,15 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 
 @SuppressWarnings("FieldCanBeLocal")
 
 public class MainFrame extends JFrame {
 
     private final JButton b1shut,b2shut,b3abort, b4execute;
-    private final JLabel background,timeLabel;
+    private final JLabel background,timeLabel,errorLabel;
     private final JTextField seconds;
-    ActionListener buttonListener;
 
     public MainFrame(){
         this.setResizable(true);
@@ -26,16 +22,17 @@ public class MainFrame extends JFrame {
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
+        setIconImage(new ImageIcon(".\\src\\main\\java\\files\\windows_logo.png").getImage());
         background = new JLabel(new ImageIcon(".\\src\\main\\java\\files\\Windows_XP_Shutdown.png"));
         background.setLayout(new MigLayout(
                 "",
                 "40[]40[]40[]",
-                "80[]20[]"
+                "80[]15[][]"
         ));
         b1shut = new JButton(Text.oneH);
         b2shut = new JButton(Text.twoH);
         b3abort = new JButton(Text.abort);
-        b4execute = new JButton(Text.execute);
+        b4execute = new JButton(Text.start);
         timeLabel = new JLabel(Text.seconds);
         seconds = new JTextField(10);
         seconds.setText(Text.entText);
@@ -47,6 +44,8 @@ public class MainFrame extends JFrame {
         b4execute.setForeground(Color.WHITE);
 
 
+
+
         //region add to frame
         this.add(background);
         background.add(b1shut);
@@ -54,7 +53,9 @@ public class MainFrame extends JFrame {
         background.add(b3abort,"wrap");
         background.add(timeLabel,"split 3, span 3");
         background.add(seconds);
-        background.add(b4execute);
+        background.add(b4execute,"wrap");
+        background.add(errorLabel= new JLabel(),"span, gapleft 90");
+
         //endregion
         //region Listener
         seconds.addFocusListener(new FocusListener() {
@@ -74,10 +75,24 @@ public class MainFrame extends JFrame {
 
             }
         });
+        seconds.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyChar() >='0' && e.getKeyChar() <='9'){
+                    b4execute.addActionListener(ee ->Actions.execute(seconds.getText()));
+                    errorLabel.setText("");
+                }else{
+                    errorLabel.setText("*Enter only DIGITS!");
+                    errorLabel.setForeground(Color.red);
+                }
+            }
+        });
         b1shut.addActionListener(e -> Actions.oneHour());
         b2shut.addActionListener(e -> Actions.twoHour());
         b3abort.addActionListener(e -> Actions.abort());
-        b4execute.addActionListener(e ->Actions.execute(seconds.getText()));
+
+
+        //endregion
 
 
 
