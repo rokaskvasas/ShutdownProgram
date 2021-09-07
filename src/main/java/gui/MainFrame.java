@@ -11,6 +11,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Objects;
 
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -27,8 +28,9 @@ public class MainFrame extends JFrame {
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-        setIconImage(new ImageIcon(".\\src\\main\\java\\files\\windows_logo.png").getImage());
-        background = new JLabel(new ImageIcon(".\\src\\main\\java\\files\\Windows_XP_Shutdown.png"));
+        setIconImage(new ImageIcon(".\\src\\main\\java\\images\\windows_logo.png").getImage());
+//        background = new JLabel(new ImageIcon(".\\src\\main\\java\\images\\Windows_XP_Shutdown.png"));
+        background = new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("Windows_XP_Shutdown.png"))));
         background.setLayout(new MigLayout(
                 "",
                 "40[]40[]40[]",
@@ -47,7 +49,6 @@ public class MainFrame extends JFrame {
         b3abort.setBackground(new Color(255,80,0));
         b4execute.setBackground(Color.BLACK);
         b4execute.setForeground(Color.WHITE);
-
 
 
         //region add to frame
